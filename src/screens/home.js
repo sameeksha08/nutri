@@ -65,7 +65,7 @@ function renderHome() {
       </div>
       <div class="scroll-content">
         <div class="home-header">
-          <div class="home-logo">nouri<em>.</em></div>
+          <div class="home-logo">nutri<em>.</em></div>
           <div class="notif-btn" onclick="APP.showToast('3 new notifications')">🔔<div class="notif-pip"></div></div>
         </div>
 
