@@ -20,7 +20,7 @@ function renderOnboarding() {
     {
       num: 'Step 1 of 6',
       title: 'What brings you\nto gUide?',
-      desc: 'Select all that apply — we\'ll personalise everything from here.',
+      desc: 'Select all that apply, we\'ll personalise everything from here.',
       type: 'options',
       multi: true,
       hint: 'Pick as many as you like',
@@ -35,7 +35,7 @@ function renderOnboarding() {
     {
       num: 'Step 2 of 6',
       title: 'How do you\nidentify?',
-      desc: 'This shapes the content we show — gender affects nutrition in real, evidence-based ways.',
+      desc: 'This shapes the content we show gender affects nutrition in real, evidence-based ways.',
       type: 'options',
       multi: false,
       options: [
@@ -149,8 +149,8 @@ function renderOnboarding() {
       const canContinue = !isMulti ? true : selSet.length > 0;
 
       body = `
-        <div class="ob-step">
-          <div class="ob-step-content">
+        <div class="ob-step" style="display:flex;flex-direction:column;height:100%">
+          <div class="ob-step-content" style="flex:1;overflow-y:auto;padding-bottom:8px;scrollbar-width:none">
             ${backBtn}
             <div class="ob-step-num fade-up">${step.num}</div>
             <h1 class="fade-up fade-up-1" style="white-space:pre-line">${step.title}</h1>
@@ -158,9 +158,11 @@ function renderOnboarding() {
             ${isMulti ? `<div style="font-size:11px;color:var(--sage);font-weight:500;margin-bottom:8px">☑ ${step.hint || 'Select all that apply'}</div>` : ''}
             <div class="ob-options">${opts}</div>
           </div>
-          <button class="btn btn-primary" style="width:100%;margin-top:20px;padding:15px;${!canContinue && isMulti ? 'opacity:0.5' : ''}" onclick="OB.next()">
-            ${isMulti && selSet.length > 0 ? `${continueLabel} (${selSet.length} selected)` : continueLabel}
-          </button>
+          <div style="flex-shrink:0;padding-top:12px">
+            <button class="btn btn-primary" style="width:100%;padding:15px;${!canContinue && isMulti ? 'opacity:0.5' : ''}" onclick="OB.next()">
+              ${isMulti && selSet.length > 0 ? `${continueLabel} (${selSet.length} selected)` : continueLabel}
+            </button>
+          </div>
         </div>`;
 
     } else if (step.type === 'connect') {
