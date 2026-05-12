@@ -68,7 +68,7 @@ function renderOnboarding() {
     {
       num: 'Done!',
       title: 'Your village\nis ready.',
-      desc: 'nouri has created your personalised space. Your first AI-powered insight is waiting inside.',
+      desc: 'gUide has created your personalised space. Your first AI-powered insight is waiting inside.',
       type: 'done',
     },
   ];
