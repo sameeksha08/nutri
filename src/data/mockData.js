@@ -43,8 +43,8 @@ const MOCK = {
   ],
   journalEntries: [
     {
-      date: 'Today · 9:14 am', source: '✦ via Nouri chat', sourceClass: 'je-source',
-      body: 'Mentioned to Nouri I\'ve been feeling foggy and unmotivated this week. It gently noted this could be linked to iron levels during ovulation — hadn\'t connected that myself.',
+      date: 'Today · 9:14 am', source: '✦ via Nutri chat', sourceClass: 'je-source',
+      body: 'Mentioned to Nutri I\'ve been feeling foggy and unmotivated this week. It gently noted this could be linked to iron levels during ovulation — hadn\'t connected that myself.',
       mood: '😶‍🌫️ Low energy · foggy',
       data: ['⌚ 5.9h sleep', '🚶 6,200 steps', '🌸 Cycle day 14'],
     },

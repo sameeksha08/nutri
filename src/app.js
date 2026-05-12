@@ -6,7 +6,7 @@ function renderBottomNav(active) {
     { id: 'village',   icon: '🌿', label: 'Village' },
     { id: 'community', icon: '💡', label: 'Tips' },
     { id: 'journal',   icon: '📓', label: 'Journal' },
-    { id: 'chat',      icon: '🤖', label: 'Ask Nouri' },
+    { id: 'chat',      icon: '🤖', label: 'Ask Nutri' },
     { id: 'profile',   icon: '👤', label: 'Me' },
   ];
   return `

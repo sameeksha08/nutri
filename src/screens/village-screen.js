@@ -73,7 +73,7 @@ function renderVillage() {
           ${mascots}
 
           <div class="v-title-overlay">
-            <div class="v-title">🌿 Nutri Village</div>
+            <div class="v-title">🌿 Your Village</div>
             <div class="v-subtitle">6 friends · 3 online now</div>
           </div>
           <div class="v-ground"></div>

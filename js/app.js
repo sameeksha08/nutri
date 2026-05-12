@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════
-   NOURI — app.js
+   gUide — app.js
    All interactive logic
 ═══════════════════════════════════ */
 
@@ -289,7 +289,7 @@ function saveToJournalFromChat(btn, originalMsg) {
   const entry = document.createElement('div');
   entry.className = 'journal-entry ai-entry';
   entry.innerHTML = `
-    <div class="je-date"><i class="fa-solid fa-calendar-day"></i> Today · ${timeStr} <span class="je-tag ai-tag">✦ Via Nouri chat</span></div>
+    <div class="je-date"><i class="fa-solid fa-calendar-day"></i> Today · ${timeStr} <span class="je-tag ai-tag">✦ Via Nutri chat</span></div>
     <p class="je-text">${escapeHtml(originalMsg)}</p>
   `;
   const entries = document.getElementById('journalEntries');

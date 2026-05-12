@@ -5,12 +5,12 @@ function renderOnboarding() {
     {
       num: 'Welcome',
       title: 'Your health,\npersonalised.',
-      desc: 'nouri learns what works for <em>your</em> body — not a generic plan. We partner with Australian researchers and Woolworths Health so everything you see is backed by real science.',
+      desc: 'gUide learns what works for <em>your</em> body — not a generic plan. We partner with Australian researchers so everything you see is backed by real science.',
       type: 'splash',
     },
     {
       num: 'Step 1 of 6',
-      title: 'What brings you\nto nouri?',
+      title: 'What brings you\nto gUide?',
       desc: 'We\'ll personalise everything from here.',
       type: 'options',
       options: [
@@ -51,7 +51,7 @@ function renderOnboarding() {
     {
       num: 'Step 4 of 6',
       title: 'Connect your\nhealth apps',
-      desc: 'nouri brings everything into one place — so your journal, meals, sleep and cycle data all talk to each other.',
+      desc: 'gUide brings everything into one place — so your journal, meals, sleep and cycle data all talk to each other.',
       type: 'connect',
     },
     {
@@ -88,7 +88,7 @@ function renderOnboarding() {
     if (step.type === 'splash') {
       body = `
         <div class="ob-splash">
-          <div class="ob-logo fade-up">nouri<span>.</span></div>
+          <div class="ob-logo fade-up">gUide<span>.</span></div>
           <svg width="180" height="160" viewBox="0 0 180 160" class="fade-up fade-up-1">
             <ellipse cx="90" cy="130" rx="70" ry="12" fill="rgba(74,124,89,0.1)"/>
             <circle cx="90" cy="80" r="55" fill="#e8f0ea"/>
@@ -102,7 +102,6 @@ function renderOnboarding() {
           <p class="ob-tagline fade-up fade-up-3">${step.desc}</p>
           <div class="fade-up fade-up-4" style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:8px">
             <span class="badge badge-sage">🔬 Researcher-backed</span>
-            <span class="badge badge-gold">🛒 Woolworths partner</span>
             <span class="badge badge-muted">🔒 Privacy-first</span>
           </div>
           <button class="btn btn-primary fade-up fade-up-5" style="width:100%;margin-top:16px;padding:16px" onclick="OB.next()">Get started →</button>

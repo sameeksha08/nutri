@@ -31,7 +31,7 @@ function renderJournal() {
 
           <div style="margin:10px 20px;padding:12px 14px;background:var(--sage-light);border-radius:var(--r);display:flex;gap:10px;align-items:center">
             <span style="font-size:22px">💡</span>
-            <div style="font-size:11px;color:var(--muted);line-height:1.5">When you tell Nouri how you're feeling in chat, it can <strong style="color:var(--deep)">auto-add it to your journal</strong> so you always have the full picture.</div>
+            <div style="font-size:11px;color:var(--muted);line-height:1.5">When you tell Nutri how you're feeling in chat, it can <strong style="color:var(--deep)">auto-add it to your journal</strong> so you always have the full picture.</div>
           </div>
 
           <div class="section-head" style="padding:0 20px">Add today's entry</div>
@@ -58,7 +58,7 @@ function renderJournal() {
 
           <div style="margin:16px 20px;padding:14px;background:var(--warm);border-radius:var(--r)">
             <div style="font-size:12px;font-weight:500;color:var(--deep);margin-bottom:4px">📊 Mood patterns</div>
-            <div style="font-size:11px;color:var(--muted);margin-bottom:10px">Nouri is noticing you feel lower energy around cycle days 12–16. Tap to see the full pattern.</div>
+            <div style="font-size:11px;color:var(--muted);margin-bottom:10px">Nutri is noticing you feel lower energy around cycle days 12–16. Tap to see the full pattern.</div>
             <div style="display:flex;gap:4px">
               ${['M','T','W','T','F','S','S'].map((d,i) => `
                 <div style="flex:1;text-align:center">

@@ -65,7 +65,7 @@ function renderHome() {
       </div>
       <div class="scroll-content">
         <div class="home-header">
-          <div class="home-logo">nutri<em>.</em></div>
+          <div class="home-logo">gUide<em>.</em></div>
           <div class="notif-btn" onclick="APP.showToast('3 new notifications')">🔔<div class="notif-pip"></div></div>
         </div>
 
@@ -97,7 +97,7 @@ function renderHome() {
         <div style="margin:16px 20px;background:var(--warm);border-radius:var(--r);padding:14px;display:flex;align-items:center;gap:12px;cursor:pointer" onclick="APP.navigate('chat')">
           <div style="font-size:28px">🤖</div>
           <div style="flex:1">
-            <div style="font-size:13px;font-weight:500;color:var(--deep)">Ask Nouri anything</div>
+            <div style="font-size:13px;font-weight:500;color:var(--deep)">Ask Nutri anything</div>
             <div style="font-size:11px;color:var(--muted);margin-top:2px">Your AI health guide is ready — try "why am I so tired?"</div>
           </div>
           <div style="font-size:18px;color:var(--sage)">→</div>

@@ -7,7 +7,6 @@ function renderProfile() {
   const starsHTML = [1,2,3,4,5].map(i =>
     `<span style="font-size:14px;color:${i<=starsFull?'var(--gold)':'#ddd'}">${i<=starsFull?'★':'☆'}</span>`
   ).join('');
-  //comment
 
   const genderInsight = `During your ovulation phase, oestrogen peaks, which raises your pain tolerance but can also increase inflammation. Iron needs spike by up to 30%. All content you see is adapted for your hormonal profile.`;
 
@@ -91,7 +90,7 @@ function renderProfile() {
 
         <div style="margin:16px 20px;padding:14px;background:var(--sage-light);border-radius:var(--r);text-align:center">
           <div style="font-size:12px;color:var(--muted);margin-bottom:4px">Backed by</div>
-          <div style="font-size:13px;font-weight:500;color:var(--deep)">🛒 Woolworths Health · 🔬 UNSW Nutrition Lab</div>
+          <div style="font-size:13px;font-weight:500;color:var(--deep)">🛒 Sanitarium · 🔬 UTS Lab</div>
           <div style="font-size:10px;color:var(--muted);margin-top:4px">All recommendations are researcher-reviewed</div>
         </div>
 

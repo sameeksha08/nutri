@@ -48,7 +48,7 @@ function renderChat() {
     return messages.map((m, i) => {
       if (m.role === 'ai') return `
         <div>
-          <div class="bubble-sender">Nouri ✦</div>
+          <div class="bubble-sender">gUide ✦</div>
           <div class="bubble bubble-ai">${m.text.replace(/\n/g, '<br>')}
             ${m.journalPrompt ? `
               <div class="journal-prompt-chip">
@@ -69,7 +69,7 @@ function renderChat() {
           <span class="status-icons">▲ ● ■</span>
         </div>
         <div class="chat-header">
-          <h2 style="padding:0 20px">Ask Nouri</h2>
+          <h2 style="padding:0 20px">Ask Nutri</h2>
         </div>
         <div class="nouri-ai-intro" style="margin:10px 20px">
           <div class="ai-avatar">🌿</div>
