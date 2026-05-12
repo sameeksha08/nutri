@@ -206,7 +206,7 @@ function addJournalEntry() {
   setTimeout(() => confirm.style.display = 'none', 2500);
 }
 
-// ── CHAT ──────────────────────
+// AI CHAT
 
 const chatReplies = [
   {
