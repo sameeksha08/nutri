@@ -7,14 +7,14 @@ function renderOnboarding() {
     { icon: '🌸', name: 'Flo Period Tracker', bg: '#fce4ec', data: 'Cycle Day 14 · Ovulation' },
     { icon: '🍎', name: 'MyFitnessPal', bg: '#e8f5e9', data: '1,240 kcal logged' },
     { icon: '🏃', name: 'Samsung Health', bg: '#e3f2fd', data: '32 min activity' },
-    { icon: '📔', name: 'Day One Journal', bg: '#fff8e1', data: 'Mood & daily entries' },
+    { icon: '📔', name: 'Journal', bg: '#fff8e1', data: 'Mood & daily entries' },
   ];
 
   const steps = [
     {
       num: 'Welcome',
       title: 'Your health,\npersonalised.',
-      desc: 'gUide learns what works for <em>your</em> body, not a generic plan. We partner with Australian researchers and Woolworths Health so everything you see is backed by real science.',
+      desc: 'gUide learns what works for <em>your</em> body, not a generic plan. We partner with Australian researchers so everything you see is backed by real science.',
       type: 'splash',
     },
     {
@@ -124,7 +124,6 @@ function renderOnboarding() {
           <p class="ob-tagline fade-up fade-up-3">${step.desc}</p>
           <div class="fade-up fade-up-4" style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:8px">
             <span class="badge badge-sage">🔬 Researcher-backed</span>
-            <span class="badge badge-gold">🛒 Woolworths partner</span>
             <span class="badge badge-muted">🔒 Privacy-first</span>
           </div>
           <button class="btn btn-primary fade-up fade-up-5" style="width:100%;margin-top:16px;padding:16px" onclick="OB.next()">Get started →</button>

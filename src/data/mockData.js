@@ -10,7 +10,7 @@ const MOCK = {
   insights: [
     { icon: '🫐', title: 'Why blueberries support hormonal balance during ovulation', author: 'Dr. Amara W.', badge: 'purple', badgeText: 'Researcher', resonances: 14, tried: 5 },
     { icon: '😴', title: 'Sleep & cortisol — what your afternoon crash is signalling', author: 'Community', badge: 'sage', badgeText: 'Verified tip', resonances: 8, tried: 3 },
-    { icon: '🥑', title: 'Magnesium foods that actually absorb (not just spinach)', author: 'Woolworths Health', badge: 'gold', badgeText: 'Partner pick', resonances: 21, tried: 9 },
+    { icon: '🥑', title: 'Magnesium foods that actually absorb (not just spinach)', author: '-', badge: 'gold', badgeText: 'Partner pick', resonances: 21, tried: 9 },
   ],
   connectedApps: [
     { icon: '⌚', name: 'Apple Health', bg: '#f0f0f0', status: 'Synced', last: '2 min ago', data: '8,420 steps · 6.8h sleep' },
