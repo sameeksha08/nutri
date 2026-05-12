@@ -1,18 +1,29 @@
 // src/screens/onboarding.js
 
 function renderOnboarding() {
+  // Apps list including journal app
+  const connectApps = [
+    { icon: '⌚', name: 'Apple Health', bg: '#f0f0f0', data: '8,420 steps · 6.8h sleep' },
+    { icon: '🌸', name: 'Flo Period Tracker', bg: '#fce4ec', data: 'Cycle Day 14 · Ovulation' },
+    { icon: '🍎', name: 'MyFitnessPal', bg: '#e8f5e9', data: '1,240 kcal logged' },
+    { icon: '🏃', name: 'Samsung Health', bg: '#e3f2fd', data: '32 min activity' },
+    { icon: '📔', name: 'Day One Journal', bg: '#fff8e1', data: 'Mood & daily entries' },
+  ];
+
   const steps = [
     {
       num: 'Welcome',
       title: 'Your health,\npersonalised.',
-      desc: 'gUide learns what works for <em>your</em> body — not a generic plan. We partner with Australian researchers so everything you see is backed by real science.',
+      desc: 'gUide learns what works for <em>your</em> body, not a generic plan. We partner with Australian researchers and Woolworths Health so everything you see is backed by real science.',
       type: 'splash',
     },
     {
       num: 'Step 1 of 6',
       title: 'What brings you\nto gUide?',
-      desc: 'We\'ll personalise everything from here.',
+      desc: 'Select all that apply — we\'ll personalise everything from here.',
       type: 'options',
+      multi: true,
+      hint: 'Pick as many as you like',
       options: [
         { icon: '⚡', title: 'More energy & less fatigue', sub: 'Understand what\'s draining you' },
         { icon: '🍽', title: 'Smarter nutrition', sub: 'Food choices that actually work' },
@@ -26,6 +37,7 @@ function renderOnboarding() {
       title: 'How do you\nidentify?',
       desc: 'This shapes the content we show — gender affects nutrition in real, evidence-based ways.',
       type: 'options',
+      multi: false,
       options: [
         { icon: '♀️', title: 'Woman', sub: 'Including cycle & hormonal tracking' },
         { icon: '♂️', title: 'Man', sub: 'Testosterone, muscle & energy focus' },
@@ -36,29 +48,33 @@ function renderOnboarding() {
     {
       num: 'Step 3 of 6',
       title: 'Any health\nconditions we\nshould know?',
-      desc: 'Optional but helps us tailor recommendations. Nothing leaves this app.',
+      desc: 'Optional — helps us tailor recommendations. Nothing leaves this app. Select all that apply.',
       type: 'options',
       multi: true,
+      hint: 'Select all that apply',
       options: [
         { icon: '🩸', title: 'PCOS', sub: null },
         { icon: '🦋', title: 'Thyroid condition', sub: null },
         { icon: '🌿', title: 'IBS or gut issues', sub: null },
         { icon: '💤', title: 'Chronic fatigue', sub: null },
         { icon: '❤', title: 'Heart health concern', sub: null },
-        { icon: '✨', title: 'None / prefer not to say', sub: null },
+        { icon: '✅', title: 'No health conditions', sub: 'Start with a clean slate', exclusive: true },
+        { icon: '🤫', title: 'Prefer not to say', sub: null, exclusive: true },
       ],
     },
     {
       num: 'Step 4 of 6',
       title: 'Connect your\nhealth apps',
-      desc: 'gUide brings everything into one place — so your journal, meals, sleep and cycle data all talk to each other.',
+      desc: 'gUide brings everything into one place, so your journal, meals, sleep and cycle data all talk to each other.',
       type: 'connect',
+      apps: connectApps,
     },
     {
       num: 'Step 5 of 6',
       title: 'What kind of\ncommunity member\nare you?',
       desc: 'The Tips community is built on trust. Your contributions get rated by others.',
       type: 'options',
+      multi: false,
       options: [
         { icon: '👀', title: 'Mostly a reader', sub: 'I\'ll absorb tips from others' },
         { icon: '✍️', title: 'I\'ll share what works', sub: 'Help others discover what helped you' },
@@ -80,11 +96,17 @@ function renderOnboarding() {
     const step = steps[current];
     const app = document.getElementById('app');
 
-    // Progress dots
     const dots = steps.map((_, i) => `<div class="ob-dot ${i <= current ? 'active' : ''}"></div>`).join('');
     const progressBar = current > 0 ? `<div class="ob-progress">${dots}</div>` : '';
 
+    // Back button — shown on all steps except splash and done
+    const showBack = current > 0 && step.type !== 'done';
+    const backBtn = showBack
+      ? `<button onclick="OB.back()" style="background:none;border:none;cursor:pointer;color:var(--muted);font-size:13px;font-family:'DM Sans',sans-serif;display:flex;align-items:center;gap:4px;padding:0;margin-bottom:8px;">← Back</button>`
+      : '';
+
     let body = '';
+
     if (step.type === 'splash') {
       body = `
         <div class="ob-splash">
@@ -102,52 +124,75 @@ function renderOnboarding() {
           <p class="ob-tagline fade-up fade-up-3">${step.desc}</p>
           <div class="fade-up fade-up-4" style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:8px">
             <span class="badge badge-sage">🔬 Researcher-backed</span>
+            <span class="badge badge-gold">🛒 Woolworths partner</span>
             <span class="badge badge-muted">🔒 Privacy-first</span>
           </div>
           <button class="btn btn-primary fade-up fade-up-5" style="width:100%;margin-top:16px;padding:16px" onclick="OB.next()">Get started →</button>
           <button class="btn" style="color:var(--muted);font-size:13px;margin-top:4px" onclick="OB.next()">I already have an account</button>
         </div>`;
+
     } else if (step.type === 'options') {
+      const isMulti = !!step.multi;
+      const selSet = selected[current] || [];
       const opts = step.options.map((o, i) => `
-        <button class="ob-option fade-up fade-up-${Math.min(i+1,5)} ${(selected[current]||[]).includes(i)?'selected':''}" onclick="OB.select(${i},${!!step.multi})">
+        <button class="ob-option fade-up fade-up-${Math.min(i+1,5)} ${selSet.includes(i) ? 'selected' : ''}"
+          onclick="OB.select(${i}, ${isMulti}, ${!!o.exclusive})">
           <span class="ob-opt-icon">${o.icon}</span>
-          <div><div class="ob-opt-title">${o.title}</div>${o.sub?`<div class="ob-opt-sub">${o.sub}</div>`:''}</div>
+          <div style="flex:1">
+            <div class="ob-opt-title">${o.title}</div>
+            ${o.sub ? `<div class="ob-opt-sub">${o.sub}</div>` : ''}
+          </div>
+          ${isMulti ? `<div class="ob-checkbox ${selSet.includes(i) ? 'checked' : ''}"></div>` : ''}
         </button>`).join('');
+
+      const continueLabel = current === steps.length - 2 ? 'Get started →' : 'Continue →';
+      const canContinue = !isMulti ? true : selSet.length > 0;
+
       body = `
         <div class="ob-step">
           <div class="ob-step-content">
+            ${backBtn}
             <div class="ob-step-num fade-up">${step.num}</div>
             <h1 class="fade-up fade-up-1" style="white-space:pre-line">${step.title}</h1>
             <p class="ob-step-desc fade-up fade-up-2">${step.desc}</p>
+            ${isMulti ? `<div style="font-size:11px;color:var(--sage);font-weight:500;margin-bottom:8px">☑ ${step.hint || 'Select all that apply'}</div>` : ''}
             <div class="ob-options">${opts}</div>
           </div>
-          <button class="btn btn-primary" style="width:100%;margin-top:20px;padding:15px" onclick="OB.next()">
-            ${current === steps.length - 2 ? 'Get started →' : 'Continue →'}
+          <button class="btn btn-primary" style="width:100%;margin-top:20px;padding:15px;${!canContinue && isMulti ? 'opacity:0.5' : ''}" onclick="OB.next()">
+            ${isMulti && selSet.length > 0 ? `${continueLabel} (${selSet.length} selected)` : continueLabel}
           </button>
         </div>`;
+
     } else if (step.type === 'connect') {
-      const apps = MOCK.connectedApps;
-      const items = apps.map((a, i) => `
-        <div class="ob-connect-item ${(selected[current]||[]).includes(i)?'connected':''}" id="connect-${i}" onclick="OB.connect(${i})">
-          <div class="ob-connect-icon" style="background:${a.bg}">${a.icon}</div>
-          <div class="ob-connect-text">
-            <div class="ob-connect-name">${a.name}</div>
-            <div class="ob-connect-status">${(selected[current]||[]).includes(i) ? '✓ Connected · ' + a.data : 'Tap to connect'}</div>
-          </div>
-          <button class="ob-connect-btn ${(selected[current]||[]).includes(i)?'done':''}">${(selected[current]||[]).includes(i)?'✓':'Connect'}</button>
-        </div>`).join('');
+      const apps = step.apps;
+      const items = apps.map((a, i) => {
+        const isConn = (selected[current] || []).includes(i);
+        return `
+          <div class="ob-connect-item ${isConn ? 'connected' : ''}" onclick="OB.connect(${i})">
+            <div class="ob-connect-icon" style="background:${a.bg}">${a.icon}</div>
+            <div class="ob-connect-text">
+              <div class="ob-connect-name">${a.name}</div>
+              <div class="ob-connect-status">${isConn ? '✓ Connected · ' + a.data : 'Tap to connect'}</div>
+            </div>
+            <button class="ob-connect-btn ${isConn ? 'done' : ''}">${isConn ? '✓' : 'Connect'}</button>
+          </div>`;
+      }).join('');
+
+      const connCount = (selected[current] || []).length;
       body = `
         <div class="ob-step">
           <div class="ob-step-content">
+            ${backBtn}
             <div class="ob-step-num fade-up">${step.num}</div>
             <h1 class="fade-up fade-up-1">${step.title}</h1>
             <p class="ob-step-desc fade-up fade-up-2">${step.desc}</p>
             <div class="ob-connect-row">${items}</div>
           </div>
           <button class="btn btn-primary" style="width:100%;margin-top:20px;padding:15px" onclick="OB.next()">
-            ${(selected[current]||[]).length > 0 ? 'Continue with connected apps →' : 'Skip for now →'}
+            ${connCount > 0 ? `Continue with ${connCount} app${connCount > 1 ? 's' : ''} connected →` : 'Skip for now →'}
           </button>
         </div>`;
+
     } else if (step.type === 'done') {
       body = `
         <div class="ob-splash">
@@ -174,7 +219,8 @@ function renderOnboarding() {
           <span class="status-icons">▲ ● ■</span>
         </div>
         ${progressBar}
-        ${body}
+        ${step.type === 'splash' || step.type === 'done' ? body : ''}
+        ${step.type !== 'splash' && step.type !== 'done' ? body : ''}
       </div>`;
   }
 
@@ -184,12 +230,31 @@ function renderOnboarding() {
       if (current >= steps.length) { APP.navigate('home'); return; }
       render();
     },
-    select(idx, multi) {
+    back() {
+      if (current > 0) { current--; render(); }
+    },
+    select(idx, multi, exclusive) {
       if (!selected[current]) selected[current] = [];
+      const step = steps[current];
+
       if (multi) {
         const pos = selected[current].indexOf(idx);
-        if (pos > -1) selected[current].splice(pos, 1);
-        else selected[current].push(idx);
+        if (exclusive) {
+          // Exclusive options (like "No conditions") clear all others and toggle themselves
+          if (pos > -1) {
+            selected[current] = [];
+          } else {
+            selected[current] = [idx];
+          }
+        } else {
+          // Remove any exclusive options when selecting a regular one
+          const exclusiveIdxs = (step.options || [])
+            .map((o, i) => o.exclusive ? i : -1)
+            .filter(i => i > -1);
+          selected[current] = selected[current].filter(i => !exclusiveIdxs.includes(i));
+          if (pos > -1) selected[current].splice(selected[current].indexOf(idx), 1);
+          else selected[current].push(idx);
+        }
       } else {
         selected[current] = [idx];
         setTimeout(() => OB.next(), 320);
@@ -204,6 +269,7 @@ function renderOnboarding() {
       render();
     },
   };
+
   window.OB = OB;
   render();
 }
